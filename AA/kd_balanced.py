@@ -1,37 +1,33 @@
-def build_kd_tree(points, axis=0):
-    
-    if not points:
+def bkdtree(point,axis=0):
+
+    if not point:
         return None
     
-    # Sort points based on the current axis
-    points.sort(key=lambda x: x[axis])
-    median = len(points) // 2
-    
-    # Recursively build left and right subtrees
+    point.sort(key=lambda x:x[axis])
+    median=len(point)//2
+
     return {
-        'point': points[median],
-        'axis': axis,
-        'left': build_kd_tree(points[:median], (axis + 1) % len(points[0])),
-        'right': build_kd_tree(points[median + 1:], (axis + 1) % len(points[0]))
+        "point":point[median],
+        "axis":axis,
+        "left":bkdtree(point[:median],(axis+1)%len(point[0])),
+        "right":bkdtree(point[median+1:],(axis+1)%len(point[0]))
     }
 
-def print_tree(root, level=0, side=None):
-    
+def ptree(root,level=0,side=None):
+
     if root is None:
         return
     
-    prefix = ""
+    prefix=""
     if side is not None:
-        prefix = side + "---"
+        prefix=side+"----"
     
-    # Print current node
-    print('  ' * level + prefix + str(root['point']))
-    
-    # Recursively print left and right subtrees
-    print_tree(root['left'], level + 1, 'L')
-    print_tree(root['right'], level + 1, 'R')
+    print("  "*level+prefix+str(root["point"]))
+    ptree(root["left"],level+1,"L")
+    ptree(root["right"],level+1,"R")
 
-# Example usage
+    
+
 points = [[3, 6], [17, 15], [13, 15], [6, 12], [9, 1], [2, 7], [10, 19]]
-root = build_kd_tree(points)
-print_tree(root)
+root=bkdtree(points,0)
+ptree(root)
