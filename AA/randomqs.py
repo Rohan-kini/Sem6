@@ -1,4 +1,5 @@
 import random
+import time
 c1=0
 c2=0
 
@@ -40,8 +41,17 @@ def quicksort(arr):
         
 
 
-arr=[random.randint(0,499) for i in range(500) ]
-print("Normal Quicksort",quicksort(arr))
+arr=[random.randint(0,299) for i in range(300) ]
+start=time.time()
+sorted=quicksort(arr)
+end=time.time()
+print("Normal Quicksort",sorted)
 print(f"Number of comparisons={c2}")
-print("Randomized Quicksort",rquicksort(arr))
+print(f"Execution time:{end-start}")
+
+start=time.time()
+r_sorted=rquicksort(arr)
+end=time.time()
+print("Randomized Quicksort",r_sorted)
 print(f"Number of comparsions={c1}")
+print(f"Execution time:{end-start}")

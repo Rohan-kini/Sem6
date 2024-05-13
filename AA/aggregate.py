@@ -1,39 +1,37 @@
-arr=[8,3,1,9,8,7,3,6]
+arr=[8,3,1,6,2,4]
 stack=[]
-stack_len=6
+len_stack=6
 unit=[]
-operations_count=0
+operation_count=0
 
 def push(i):
-    global operations_count,unit
+    global operation_count,unit
     stack.append(i)
-    operations_count+=1
+    operation_count+=1
     unit.append(1)
     print(f"Stack after pushing {i} is {stack}")
 
-
 def pop():
-    global operations_count
+    global operation_count
     if stack:
         stack.pop()
-    operations_count+=1
+        operation_count+=1
 
 def multipop(k):
-    global operations_count,unit
-    no_of_elements=min(k,len(stack))
-    for _ in range(no_of_elements):
+    global unit
+    minimum=min(k,len(stack))
+    for _ in range(minimum):
         pop()
-    unit.append(no_of_elements)
-    print(f"Stack after multipop is {stack}")
-
-    
+    unit.append(minimum)
+    print(f"Stack after multipop {minimum} elements is {stack}")
 
 for i in arr:
-    print(f"Element:{i}")
-    if i<=len(stack):
-        print(f"As {i} is less than {len(stack)} we perform multipop {i} times")
+    print(f"Element {i}-")
+    if i<len(stack):
+        print(f"As {i} is less that {len(stack)} we perform multipop")
         multipop(i)
     push(i)
 
-print(f"T(n)={sum(unit)} and num of operations is {operations_count}")
-print(f"Time complexity O({sum(unit)//operations_count})")
+print(stack)
+print(f"T(n)={sum(unit)} and number of operations is {operation_count}")
+print(f"Aggregate analysis is {sum(unit)/operation_count}")
