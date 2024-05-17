@@ -1,8 +1,6 @@
-def encrypt(pt,key):
-    pt=pt.upper()
+def encrypt(key,pt):
     result=""
     alpha="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
     for letter in pt:
         if letter in alpha:
             letter_index=(alpha.find(letter)+key)%26
@@ -11,24 +9,23 @@ def encrypt(pt,key):
             result+=letter
     return result
 
-
-def decrypt(ct,key):
-    result=""
+def decrypt(key,ct):
+    og=""
     alpha="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
-    for letter in pt:
+    for letter in ct:
         if letter in alpha:
             letter_index=(alpha.find(letter)-key)%26
-            result+=alpha[letter_index]
+            og+=alpha[letter_index]
         else:
-            result+=letter
-    return result
-    
+            og+=letter
+    return og
 
+        
+   
 if __name__=="__main__":
-    pt="toota hai gabba ka ghamand"
+    pt="azaz".upper()
     key=3
-    ciphertext=encrypt(pt,key)
-    print(ciphertext)
-    og=decrypt(ciphertext,key)
+    ct=encrypt(key,pt)
+    print(ct)
+    og=decrypt(key,ct)
     print(og)
