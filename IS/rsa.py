@@ -30,5 +30,3 @@ if __name__=="__main__":
     print(encrypt)
     decrypt=(encrypt**d)%n
     print(decrypt)
-
-
